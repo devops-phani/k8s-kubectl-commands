@@ -11,5 +11,11 @@ kubectl get nodes -o custom-columns=NAME:.metadata.name,TAINTS:.spec.taints --no
 ### Change persistentVolumeReclaimPolicy to Retain
 
 ```
-kubectl patch pv pvc-011346fb-0597-4cc1-8984-2234b00c6790 -p '{"spec":{"persistentVolumeReclaimPolicy":"Retain"}}'
+kubectl patch pv pv-name -p '{"spec":{"persistentVolumeReclaimPolicy":"Retain"}}'
+```
+
+### Remove claimRef for pvc so that persistentVolume will become available
+
+```
+kubectl patch pv pv-name --type json -p '[{"op": "remove", "path": "/spec/claimRef"}]'
 ```
