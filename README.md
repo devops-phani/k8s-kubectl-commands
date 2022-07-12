@@ -27,3 +27,9 @@ Ref https://www.studytonight.com/post/how-to-delete-all-the-evicted-pods-in-kube
 ```
 kubectl get pod -n namesapcename | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n namesapcename
 ```
+
+### Exec inside the pod using any one of the shell
+
+```
+kubectl exec -i -t -n test test-nginx-6896db5f46-9mhg6 -c nginx -- sh -c "clear; (bash || ash || sh)"
+```
