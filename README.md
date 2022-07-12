@@ -19,3 +19,11 @@ kubectl patch pv pv-name -p '{"spec":{"persistentVolumeReclaimPolicy":"Retain"}}
 ```
 kubectl patch pv pv-name --type json -p '[{"op": "remove", "path": "/spec/claimRef"}]'
 ```
+
+### Delete Evicted pods in a namespace
+
+Ref https://www.studytonight.com/post/how-to-delete-all-the-evicted-pods-in-kubernetes
+
+```
+kubectl get pod -n namesapcename | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n namesapcename
+```
