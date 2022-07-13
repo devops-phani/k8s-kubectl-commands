@@ -52,6 +52,16 @@ kubectl api-resources --verbs=list --namespaced=false
 ```
 kubectl api-resources --verbs=list -o wide
 ```
+### Get the full list of verbs
+
+```
+kubectl proxy
+```
+Run below command from other terminal
+
+```
+curl localhost:8001/api/v1
+```
 
 ### Check your access
 
