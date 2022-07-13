@@ -33,3 +33,38 @@ kubectl get pod -n namesapcename | grep Evicted | awk '{print $1}' | xargs kubec
 ```
 kubectl exec -i -t -n test test-nginx-6896db5f46-9mhg6 -c nginx -- sh -c "clear; (bash || ash || sh)"
 ```
+### List the namespaced resources
+
+Ref: https://kubernetes.io/docs/reference/kubectl/#resource-types
+
+```
+kubectl api-resources --verbs=list --namespaced
+```
+
+### List the cluster level resources
+
+```
+kubectl api-resources --verbs=list --namespaced=false
+```
+
+### List both namespaced and cluster level resources with verbs
+
+```
+kubectl api-resources --verbs=list -o wide
+```
+
+### Check your access
+
+Ref: https://kubernetes.io/docs/reference/access-authn-authz/authorization/
+
+```
+kubectl auth can-i create deployments --namespace test
+```
+
+```
+kubectl auth can-i list secrets --namespace test
+```
+
+
+
+
