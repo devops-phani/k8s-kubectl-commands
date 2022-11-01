@@ -76,5 +76,18 @@ kubectl auth can-i list secrets --namespace test
 ```
 
 
+Trigger Cronjob Manually
 
+Ref: https://www.craftypenguins.net/blog/how-to-trigger-a-kubernetes-cronjob-manually/
 
+```
+kubectl create job --from=cronjob/<name of cronjob> <name of job>
+```
+
+For example, if the name of your cronjob is “pgdump”, then you might run:
+
+```
+kubectl create job --from=cronjob/pgdump pgdump-manual-001
+```
+
+To see a list of cron jobs, run `kubectl get cronjob`
