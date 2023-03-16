@@ -104,3 +104,8 @@ List Events sorted by timestamp
 ```
 kubectl get events --sort-by=.metadata.creationTimestamp
 ```
+Delete all released pv's
+
+```
+kubectl get pv | tail -n+2 | awk '$5 == "Released" {print $1}' | xargs -I{} kubectl delete pv {}
+```
