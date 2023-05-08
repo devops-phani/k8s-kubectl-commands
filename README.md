@@ -109,3 +109,9 @@ Delete all released pv's
 ```
 kubectl get pv | tail -n+2 | awk '$5 == "Released" {print $1}' | xargs -I{} kubectl delete pv {}
 ```
+Assign the External IP for LoadBalancer manually.
+
+```
+kubectl patch svc frontend -p '{"spec":{"externalIPs":["192.168.0.194"]}}'
+```
+
