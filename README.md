@@ -115,3 +115,30 @@ Assign the External IP for LoadBalancer manually.
 kubectl patch svc frontend -p '{"spec":{"externalIPs":["192.168.0.194"]}}'
 ```
 
+Delete pvc's using shell script `delete_pvc.sh`
+
+```
+alias k='kubectl -n $n'
+n=default
+for pvc_name in $(k get pvc | grep pvcname | grep -v phani | awk '{print $1}'); do
+    echo " delete $pvc_name "
+    k delete pvc "$pvc_name"
+done
+```
+
+```
+sh delete_pvc.sh
+```
+
+Delete Released pv's using shell script `delete_pv.sh`
+
+```
+for pv_name in $(kubectl get pv | grep Released | awk '{print $1}'); do
+    echo " delete $pv_name "
+    kubectl delete pv "$pv_name"
+done
+```
+
+```
+sh delete_pv.sh
+```
