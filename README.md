@@ -142,3 +142,8 @@ done
 ```
 sh delete_pv.sh
 ```
+Get the configmap in proper format
+
+```
+kubectl -n kube-system get configmap coredns -o go-template={{.data.Corefile}}
+```
