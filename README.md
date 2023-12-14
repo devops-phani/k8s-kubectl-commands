@@ -147,3 +147,30 @@ Get the configmap in proper format
 ```
 kubectl -n kube-system get configmap coredns -o go-template={{.data.Corefile}}
 ```
+
+Create basic auth secret
+```
+htpasswd -c auth foo
+
+kubectl create secret generic basic-auth --from-file=auth
+```
+
+Add below annotations to ingress
+
+```
+annotations:
+  kubernetes.io/ingress.class: nginx
+  nginx.ingress.kubernetes.io/auth-secret: basic-auth
+  nginx.ingress.kubernetes.io/auth-type: basic
+```
+
+Git submodule commands
+
+```
+git submodule add git@bitbucket.org:myproject/myrepo.git mydata
+
+git submodule update --init --recursive
+
+git submodule update --recursive --remote
+```
+
