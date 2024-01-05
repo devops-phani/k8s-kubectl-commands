@@ -173,4 +173,15 @@ git submodule update --init --recursive
 
 git submodule update --recursive --remote
 ```
+Check the ssl certificate information
+
+```
+openssl x509 -subject -noout -in certificate.crt
+```
+for full information
+
+```
+openssl x509 -in certificate.crt -text -noout
+```
+
 
