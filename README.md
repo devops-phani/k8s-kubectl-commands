@@ -184,4 +184,15 @@ for full information
 openssl x509 -in certificate.crt -text -noout
 ```
 
+Delete evicted pods from all namespaces
+
+```
+kubectl get pods --all-namespaces -o json | jq '.items[] | select(.status.reason!=null) | select(.status.reason | contains("Evicted")) | "kubectl delete pods \(.metadata.name) -n \(.metadata.namespace)"' | xargs -n 1 bash -c
+```
+
+Delete evicted pods from specific namespace
+
+```
+kubectl get pod -n test | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n test
+```
 
