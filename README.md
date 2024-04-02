@@ -195,4 +195,14 @@ Delete evicted pods from specific namespace
 ```
 kubectl get pod -n test | grep Evicted | awk '{print $1}' | xargs kubectl delete pod -n test
 ```
+Get all non-running pods
 
+```
+kubectl get -A --field-selector 'status.phase!=Running' pods
+```
+
+Delete all non-running pods
+
+```
+kubectl delete -A --field-selector 'status.phase!=Running' pods
+```
