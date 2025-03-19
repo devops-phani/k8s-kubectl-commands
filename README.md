@@ -217,3 +217,10 @@ Delete crds, if it is not deleting due to finalizers
 kubectl patch crd/MY_CRD_NAME -p '{"metadata":{"finalizers":[]}}' --type=merge
 ```
 
+Delete failed or evicted pods
+
+```
+kubectl delete pod --field-selector=status.phase==Failed
+```
+
+
